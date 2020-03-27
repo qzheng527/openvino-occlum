@@ -34,7 +34,7 @@ tar -xf $alpine_openvino_tar -C $alpine_openvino
 docker cp $alpine_openvino $target_container:/root/
 
 # Copy run script to the Occlum container
-docker cp run_benchmark_on_occlum.sh $target_container:/root/
+docker cp run_demo_on_occlum.sh $target_container:/root/
 
 # Clean up
 rm -rf $alpine_openvino $alpine_openvino_tar

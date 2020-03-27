@@ -40,7 +40,7 @@ It is /root/people.bmp in this case.
 ### Run the demo
 
 ```
-./run_benchmark_on_occlum.sh
+./run_demo_on_occlum.sh
 ```
 
 You will get the inference result.
