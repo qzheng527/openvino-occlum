@@ -1,0 +1,38 @@
+From fb768554953189adee16d3bdf70ecce5fb6fd626 Mon Sep 17 00:00:00 2001
+From: Fabrice Fontaine <fontaine.fabrice@gmail.com>
+Date: Sun, 8 Dec 2019 18:22:38 +0100
+Subject: [PATCH 2/2] mallinfo() is glibc specific API mark it so
+
+Helps compiling with musl
+
+Signed-off-by: Khem Raj <raj.khem@gmail.com>
+[Retrieved from:
+https://github.com/openembedded/meta-openembedded/blob/master/meta-oe/recipes-support/tbb/tbb/0001-mallinfo-is-glibc-specific-API-mark-it-so.patch]
+Signed-off-by: Fabrice Fontaine <fontaine.fabrice@gmail.com>
+---
+ src/tbbmalloc/proxy.cpp | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/src/tbbmalloc/proxy.cpp b/src/tbbmalloc/proxy.cpp
+index a49db4d..517a818 100644
+--- a/src/tbbmalloc/proxy.cpp
++++ b/src/tbbmalloc/proxy.cpp
+@@ -275,6 +275,7 @@ int mallopt(int /*param*/, int /*value*/) __THROW
+     return 1;
+ }
+ 
++#ifdef __GLIBC__
+ struct mallinfo mallinfo() __THROW
+ {
+     struct mallinfo m;
+@@ -282,6 +283,7 @@ struct mallinfo mallinfo() __THROW
+ 
+     return m;
+ }
++#endif
+ 
+ #if __ANDROID__
+ // Android doesn't have malloc_usable_size, provide it to be compatible
+-- 
+2.24.1
+
